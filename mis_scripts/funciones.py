@@ -57,8 +57,12 @@ def reemplazar_valores(df, columna, valores_viejos, valor_nuevo):
     df[columna] = df[columna].replace(valores_viejos, valor_nuevo)
     return df
 
+def agrupar_por_pais(df):
+    return df.groupby('Country')['Quantity'].sum().reset_index()
+
 def contar_valor(df, columna, valor):
     return df[df[columna] == valor].shape[0]
+
 def crear_mapa(df_agrupado):
     fig = px.choropleth(
         df_agrupado,
